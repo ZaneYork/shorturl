@@ -42,7 +42,7 @@ func TestZeroURL(t *testing.T) {
 func TestNewURL(t *testing.T) {
 	assert := assert.New(t)
 
-	u, err := NewURL("https://www.google.com")
+	u, err := NewURL("https://www.google.com", 5)
 	assert.Nil(err, nil)
 
 	assert.NotEqual(u.ID, "")

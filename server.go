@@ -108,7 +108,7 @@ func (s *Server) ShortenHandler() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 		s.counters.Inc("n_shorten")
 
-		u, err := NewURL(r.FormValue("url"))
+		u, err := NewURL(r.FormValue("url"), s.config.urlLength)
 		if err != nil {
 			log.Printf("error creating new url: %s", err)
 			http.Error(w, "Internal Error", http.StatusInternalServerError)

@@ -13,10 +13,9 @@ type URL struct {
 	UpdatedAt time.Time `storm:"index"`
 }
 
-func GenerateID() string {
+func GenerateID(length int) string {
 	for {
-		// TODO: Make length (5) configurable
-		id := RandomString(5)
+		id := RandomString(length)
 		err := db.One("ID", id, nil)
 		if err != nil {
 			return id
@@ -24,8 +23,8 @@ func GenerateID() string {
 	}
 }
 
-func NewURL(target string) (url *URL, err error) {
-	url = &URL{ID: GenerateID(), URL: target, CreatedAt: time.Now()}
+func NewURL(target string, urlLength int) (url *URL, err error) {
+	url = &URL{ID: GenerateID(urlLength), URL: target, CreatedAt: time.Now()}
 	err = db.Save(url)
 	return
 }

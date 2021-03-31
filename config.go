@@ -2,5 +2,6 @@ package main
 
 // Config ...
 type Config struct {
-	baseURL string
+	baseURL   string
+	urlLength int
 }
