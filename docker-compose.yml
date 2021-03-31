@@ -1,0 +1,14 @@
+version: "3"
+services:
+  shorturl:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: shorturl:0.1.0
+    container_name: shorturl
+    restart: always
+    volumes:
+      - ./data:/data
+    command: "/shorturl -dbpath /data/urls.db"
+    ports:
+      - "18000:8000"

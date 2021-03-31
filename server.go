@@ -88,7 +88,7 @@ func (s *Server) IndexHandler() httprouter.Handle {
 		s.counters.Inc("n_index")
 
 		var urlList []*URL
-		err := db.All(&urlList)
+		err := db.AllByIndex("CreatedAt", &urlList, storm.Limit(10), storm.Reverse())
 		if err != nil {
 			log.Printf("error querying urls index: %s", err)
 			http.Error(w, "Internal Error", http.StatusInternalServerError)

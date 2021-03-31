@@ -6,6 +6,8 @@ ARG BUILD
 
 ENV APP shorturl
 ENV REPO prologic/$APP
+ENV GO111MODULE on
+ENV GOPROXY https://goproxy.cn
 
 RUN apk add --update git make build-base && \
     rm -rf /var/cache/apk/*
@@ -25,6 +27,3 @@ LABEL shorturl.app main
 COPY --from=build /go/src/github.com/${REPO}/${APP} /${APP}
 
 EXPOSE 8000/tcp
-
-ENTRYPOINT ["/shorturl"]
-CMD []
