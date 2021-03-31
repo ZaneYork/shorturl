@@ -9,6 +9,6 @@ services:
     restart: always
     volumes:
       - ./data:/data
-    command: "/shorturl -dbpath /data/urls.db -urllen 4"
+    command: "-dbpath /data/urls.db -urllen 4"
     ports:
       - "18000:8000"
